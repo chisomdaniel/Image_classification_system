@@ -71,6 +71,9 @@ def calculates_results_stats(results_dic):
     # Replace None with the results_stats_dic dictionary that you created with 
     # this function 
     
+    """This function creates a result statistics from the performance of the image classifiers
+    then return a dictionary containing all the various statistics value
+    """
     results_stats_dic = dict()
     results_stats_dic["n_images"] = len(results_dic)
     
@@ -79,7 +82,10 @@ def calculates_results_stats(results_dic):
     n_correct_dogs = 0
     n_correct_notdogs = 0
     n_correct_breed = 0
+    n_matches = 0
     for image, list_item in results_dic.items():
+        if list_item[2] == 1:
+            n_matches += 1
         if list_item[3] == 1:
             if list_item[4] == 1:
                 n_correct_dogs += 1
@@ -96,8 +102,10 @@ def calculates_results_stats(results_dic):
     results_stats_dic["n_correct_dogs"] = n_correct_dogs
     results_stats_dic["n_correct_notdogs"] = n_correct_notdogs
     results_stats_dic["n_correct_breed"] = n_correct_breed
+    results_stats_dic["n_matches"] = n_matches
     results_stats_dic["pct_correct_dogs"] = n_correct_dogs/n_dogs_img * 100.0
     results_stats_dic["pct_correct_notdogs"] = n_correct_notdogs/n_notdogs_img * 100.0
     results_stats_dic["pct_correct_breed"] = n_correct_breed/n_dogs_img * 100.0
+    results_stats_dic["pct_matches"] = n_matches/len(results_dic) * 100.0
     
     return results_stats_dic

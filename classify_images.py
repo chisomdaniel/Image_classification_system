@@ -69,9 +69,8 @@ def classify_images(images_dir, results_dic, model):
         full_image_dir = images_dir + file_name      # add a condition to check if there is a slash after the directory name
         image_classification = classifier(full_image_dir, model)
         result_label = image_classification.lower().strip()
-        name_list.append(result_label)
         if name_list[0] in result_label:
-            name_list.append(1)
+            name_list.extend((result_label, 1))
         else:
-            name_list.append(0)
+            name_list.extend((result_label, 0))
             

@@ -44,6 +44,8 @@ def get_pet_labels(image_dir):
     filenames = listdir(image_dir)
     
     for file in filenames:
+        if file[0] == ".":
+            continue
         pet_name = ""
         petname_list = file.split("_")
         for i in petname_list:
